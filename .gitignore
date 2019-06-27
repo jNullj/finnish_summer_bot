@@ -1,0 +1,7 @@
+# Dependency directories
+node_modules/
+package-lock.json
+package.json
+# Ignore file with passwords
+botinfo.js
+
