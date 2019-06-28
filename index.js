@@ -28,7 +28,10 @@ bot.on('message', message => {
       break;
   
     default:
-        //some stuff
+        //at random (1% chance) write a new msg
+        if(Math.random()>0.99){
+            Command.random_swear(message);
+        }
         break;
   }
 });
