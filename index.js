@@ -23,8 +23,8 @@ bot.on('message', message => {
     case (message.content.match(/^!setBDay /) || {}).input:
         //example of command with match
         break;
-    case '!help':
-      //message.channel.sendMessage('Commands: ');
+    case '!stress':
+      Command.random_swear_vc(bot);
       break;
   
     default:
