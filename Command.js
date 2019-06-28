@@ -7,7 +7,7 @@ class Command {
         var swear = ["badword1","badword2"];
         var rand = Math.random();
         var i = Math.floor(rand * Math.floor(swear.length)); //get random index from array
-        message.channel.sendMessage(swear[i]);
+        message.channel.send(swear[i]);
     }
 }
 
