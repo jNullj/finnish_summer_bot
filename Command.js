@@ -21,7 +21,7 @@ class Command {
         vchannel.join()
           .then(connection => {
             var dispatcher = connection.playBroadcast(broadcast);
-            console.log(path + swear[i]);
+            //console.log(path + swear[i]);
             var endme = broadcast.playFile(path + swear[i], streamOptions);
             endme.on("end", () => { setTimeout(function(){
                 vchannel.leave()
