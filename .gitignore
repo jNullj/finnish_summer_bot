@@ -6,3 +6,4 @@ package.json
 botinfo.js
 
 *.mp3
+*.wav
