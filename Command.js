@@ -13,7 +13,7 @@ class Command {
     }
     static random_swear_vc(client, vchannel){
         var path = "./";
-        var swear = ["test1.mp3","test2.mp3","test3.mp3"];
+        var swear = ["1.wav","2.wav","3.wav","4.wav","5.wav","6.wav","7.wav","8.wav","9.wav","10.wav","11.wav","12.wav","13.wav","14.wav"];
         var rand = Math.random();
         var i = Math.floor(rand * Math.floor(swear.length)); //get random index from array
         var broadcast = client.createVoiceBroadcast();
