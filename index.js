@@ -24,7 +24,7 @@ bot.on('message', message => {
         //example of command with match
         break;
     case '!stress':
-      Command.random_swear_vc(bot);
+      Command.random_swear_vc(bot, message.member.voiceChannel);
       break;
   
     default:
