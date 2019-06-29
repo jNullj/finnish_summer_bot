@@ -5,3 +5,4 @@ package.json
 # Ignore file with passwords
 botinfo.js
 
+*.mp3
