@@ -1,5 +1,6 @@
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
-const streamOptions = { seek: 0, volume: 0.2, passes: 10 };
+const streamOptions = { seek: 0, volume: 0.7, passes: 3 };
+const ffmpeg = require("ffmpeg");
 
 class Command {
     static getPoints(id){
@@ -12,6 +13,7 @@ class Command {
         message.channel.send(swear[i]);
     }
     static random_swear_vc(client, vchannel){
+        if(vchannel==undefined){ return; } \\avoid crushing when user isnt in vc
         var path = "./";
         var swear = ["1.wav","2.wav","3.wav","4.wav","5.wav","6.wav","7.wav","8.wav","9.wav","10.wav","11.wav","12.wav","13.wav","14.wav"];
         var rand = Math.random();
@@ -20,11 +22,13 @@ class Command {
         //broadcast.on("end", () => { sleep(1000); vchannel.leave(); });
         vchannel.join()
           .then(connection => {
-            var dispatcher = connection.playBroadcast(broadcast);
+            var dispatcher = connection.playFile(path + swear[i]);
             //console.log(path + swear[i]);
-            var endme = broadcast.playFile(path + swear[i], streamOptions);
-            endme.on("end", () => { setTimeout(function(){
-                vchannel.leave()
+            //var endme = broadcast.playFile(path + swear[i], streamOptions);
+            //var endme = broadcast.playArbitraryInput(path + swear[i], streamOptions);
+            dispatcher.on("end", () => { setTimeout(function(){
+                dispatcher.destroy();
+                vchannel.leave();
             }, 2000) });
          }).catch(console.error);
     }
