@@ -7,15 +7,12 @@ class Command {
         return 0;
     }
     static random_swear(message){
-        var swear = ["Dreamers, I have for you a tale of triumph over adversity. Of one person actin' true to their truest self.",
-"Get comfy, Dreamers. One of our own believes they are the equal of our foe and, baby, they are actin' like it.",
-"Word's comin' in of so many of you bein' your best selves. Nora is just beside herself with admiration.",
-"Dreamers, Dreamers, Dreamers! There just is no. holding. you. all. back!",
-"Things seem tough, Nora knows, but believe: though it's going outta style there are people workin' to make this System a better place.",
-"Ladies. And. Gentlemen. Listeners of all ages. I present to you. Walking amongst us. The once. And future. Bad. Ass.",
-"If there's one thing I've learned, Dreamers, it's this: Just when you think you've had it all, seen it all, done it all... there's always more.",
-"Life is a cornucopia, friends. A movable feast. An act of guts and trust. Take it when and where you find it.",
-"Does your backbrain feel that reptile tickle of a reward? Do you see that bobbing light ahead, floating through the marsh of what is to come, promising you more and more and more? Do follow, Dreamers, into that sweet black tomorrow?"];
+        var swear = ["Mitä helvettiä?!",
+                    "Jumalauta!",
+                    "Perkele!",
+                    "Saatana!",
+                    "Vittu!",
+                    "Voi vittujen kevät!"];
         var rand = Math.random();
         var i = Math.floor(rand * Math.floor(swear.length)); //get random index from array
         message.channel.send(swear[i]);
