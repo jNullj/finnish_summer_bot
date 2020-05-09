@@ -28,8 +28,8 @@ bot.on('message', message => {
       break;
   
     default:
-        //at random (1% chance) write a new msg
-        if(Math.random()>0.98){
+        //at random (3% chance) write a new msg
+        if(Math.random()>0.97 && message.author.id != bot.user.id ){
             Command.random_swear(message);
         }
         break;
