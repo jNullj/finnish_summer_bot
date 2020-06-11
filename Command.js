@@ -37,6 +37,9 @@ class Command {
             }, 2000) });
          }).catch(console.error);
     }
+    static penis_party(message){
+        message.channel.send("𓂸");
+    }
 }
 
 module.exports = Command;

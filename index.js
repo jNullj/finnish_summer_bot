@@ -15,6 +15,7 @@ const Command = require('./Command.js');
 
 // create an event listener for messages
 bot.on('message', message => {
+  if(message.author.id == bot.user.id) { return; }  //ignore replaying to self
   switch (message.content) {
     case '!points':
       //points = Command.getPoints(message.author.id);
@@ -26,10 +27,13 @@ bot.on('message', message => {
     case '!stress':
       Command.random_swear_vc(bot, message.member.voiceChannel);
       break;
+    case message.content.match(/𓂸/).input:
+      Command.penis_party(message);
+      break;
   
     default:
         //at random (3% chance) write a new msg
-        if(Math.random()>0.97 && message.author.id != bot.user.id ){
+        if(Math.random()>0.97){
             Command.random_swear(message);
         }
         break;
