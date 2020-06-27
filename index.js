@@ -27,13 +27,11 @@ bot.on('message', message => {
     case '!stress':
       Command.random_swear_vc(bot, message.member.voiceChannel);
       break;
-    case message.content.match(/𓂸/).input:
-      Command.penis_party(message);
-      break;
-  
     default:
-        //at random (3% chance) write a new msg
-        if(Math.random()>0.97){
+        if(message.content.match(/𓂸/) != null){
+            Command.penis_party(message);
+        }else if(Math.random()>0.97){
+            //at random (3% chance) write a new msg
             Command.random_swear(message);
         }
         break;
