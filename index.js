@@ -5,6 +5,7 @@ const TOKEN = botinfo.token;
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 // login the bot
+//bot.on('debug', console.log)
 bot.login(TOKEN);
 // critical, makes sure the bot will only start after discord gives it the green flag
 bot.on('ready', () => {
@@ -25,7 +26,7 @@ bot.on('message', message => {
         //example of command with match
         break;
     case '!stress':
-      Command.random_swear_vc(bot, message.member.voiceChannel);
+      Command.random_swear_vc(bot, message.member.voice.channel);
       break;
     default:
         if(message.content.match(/𓂸/) != null){
