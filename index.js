@@ -3,7 +3,12 @@ const botinfo = require("./botinfo.js");
 
 const TOKEN = botinfo.token;
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const myIntents = new Discord.Intents();
+myIntents.add(Discord.Intents.FLAGS.GUILD_MESSAGES);
+myIntents.add(Discord.Intents.FLAGS.GUILD_VOICE_STATES);
+myIntents.add(Discord.Intents.FLAGS.GUILD_MEMBERS);
+myIntents.add(Discord.Intents.FLAGS.GUILDS);
+const bot = new Discord.Client({ intents: myIntents });
 // login the bot
 //bot.on('debug', console.log)
 bot.login(TOKEN);
@@ -15,7 +20,7 @@ bot.on('ready', () => {
 const Command = require('./Command.js');
 
 // create an event listener for messages
-bot.on('message', message => {
+bot.on('messageCreate', message => {
   if(message.author.id == bot.user.id) { return; }  //ignore replaying to self
   switch (message.content) {
     case '!points':
