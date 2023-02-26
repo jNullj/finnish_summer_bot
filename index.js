@@ -69,9 +69,6 @@ bot.on('messageCreate', message => {
     case (message.content.match(/^!setBDay /) || {}).input:
         //example of command with match
         break;
-    case '!stress':
-      Command.random_swear_vc(bot, message.member.voice.channel);
-      break;
     default:
         if(message.content.match(/𓂸/) != null){
             Command.penis_party(message);
