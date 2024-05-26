@@ -7,3 +7,7 @@ mdeia/*.wav
 .env
 .env-dst
 docker-compose.yml
+.dockerignore
+.github/
+Dockerfile
+**/*.md
