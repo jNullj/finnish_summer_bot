@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@discordjs/voice": "0.18.0",
-    "discord.js": "14.16.3",
+    "discord.js": "14.17.2",
     "sodium": "3.0.2"
   },
   "scripts": {
