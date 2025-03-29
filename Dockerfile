@@ -11,15 +11,12 @@ RUN npm install --production
 COPY . .
 
 # Stage 2: Final image
-FROM node:23.10.0-slim
+FROM node:23.10.0-alpine
 
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    ffmpeg && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ffmpeg
 
 # Copy only the built application from the builder stage
 COPY --from=builder /app /app
