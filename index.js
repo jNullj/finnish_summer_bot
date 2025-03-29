@@ -65,21 +65,10 @@ import { penis_party, random_swear } from './Command.js';
 // create an event listener for messages
 bot.on('messageCreate', message => {
   if(message.author.id == bot.user.id) { return; }  //ignore replaying to self
-  switch (message.content) {
-    case '!points':
-      //points = Command.getPoints(message.author.id);
-      //message.reply('You have '+points+' points.');
-      break;
-    case (message.content.match(/^!setBDay /) || {}).input:
-        //example of command with match
-        break;
-    default:
-        if(message.content.match(/𓂸/) != null){
-            penis_party(message);
-        }else if(Math.random()>0.97){
-            //at random (3% chance) write a new msg
-            random_swear(message);
-        }
-        break;
+  if(message.content.match(/𓂸/) != null){
+	penis_party(message);
+  }else if(Math.random()>0.97){
+	//at random (3% chance) write a new msg
+	random_swear(message);
   }
 });
