@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const TOKEN = token;
-import { IntentsBitField, Client, Collection, Events } from 'discord.js';
+import { IntentsBitField, Client, Collection, Events, MessageFlags } from 'discord.js';
 const myIntents = new IntentsBitField()
 myIntents.add(IntentsBitField.Flags.GuildMessages);
 myIntents.add(IntentsBitField.Flags.GuildVoiceStates);
@@ -48,7 +48,7 @@ bot.on(Events.InteractionCreate, async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
 	}
 });
 

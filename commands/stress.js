@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, MessageFlags } from 'discord.js';
 import { createAudioPlayer, joinVoiceChannel, entersState, createAudioResource, AudioPlayerStatus, VoiceConnectionStatus } from '@discordjs/voice';
 import { readdirSync } from 'node:fs';
 
@@ -7,7 +7,7 @@ export const data = new SlashCommandBuilder()
     .setDescription('Stress the bot for a spicy reaction in voice chat');
 export async function execute(interaction) {
     // Defer as audio might play longer then interaction timeout
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
     // Find channel for reply
     const vchannel = interaction.member.voice.channel;
     if (vchannel == null) {
