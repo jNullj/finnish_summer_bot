@@ -1,36 +1,40 @@
 // for testing/easy configuration
-const botinfo = require("./botinfo.js");
-const fs = require('node:fs');
-const path = require('node:path');
+import { token } from "./botinfo.js";
+import { readdirSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const TOKEN = botinfo.token;
-const Discord = require('discord.js');
-const myIntents = new Discord.IntentsBitField()
-myIntents.add(Discord.IntentsBitField.Flags.GuildMessages);
-myIntents.add(Discord.IntentsBitField.Flags.GuildVoiceStates);
-myIntents.add(Discord.IntentsBitField.Flags.GuildMembers);
-myIntents.add(Discord.IntentsBitField.Flags.Guilds);
-myIntents.add(Discord.IntentsBitField.Flags.MessageContent);
-const bot = new Discord.Client({ intents: myIntents });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const TOKEN = token;
+import { IntentsBitField, Client, Collection, Events, MessageFlags } from 'discord.js';
+const myIntents = new IntentsBitField()
+myIntents.add(IntentsBitField.Flags.GuildMessages);
+myIntents.add(IntentsBitField.Flags.GuildVoiceStates);
+myIntents.add(IntentsBitField.Flags.GuildMembers);
+myIntents.add(IntentsBitField.Flags.Guilds);
+myIntents.add(IntentsBitField.Flags.MessageContent);
+const bot = new Client({ intents: myIntents });
 
 // slash commands handler
-bot.commands = new Discord.Collection();
+bot.commands = new Collection();
 
-const commandsPath = path.join(__dirname, 'commands');
-const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+const commandsPath = join(__dirname, 'commands');
+const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-	const filePath = path.join(commandsPath, file);
-	const command = require(filePath);
+	const filePath = join(commandsPath, file);
+	const { data, execute } = await import(`file://${filePath}`);
 	// Set a new item in the Collection with the key as the command name and the value as the exported module
-	if ('data' in command && 'execute' in command) {
-	  bot.commands.set(command.data.name, command);
+	if (data && execute) {
+	  bot.commands.set(data.name, { data, execute });
 	} else {
 		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 	}
 }
 
-bot.on(Discord.Events.InteractionCreate, async interaction => {
+bot.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	const command = interaction.client.commands.get(interaction.commandName);
@@ -44,7 +48,7 @@ bot.on(Discord.Events.InteractionCreate, async interaction => {
 		await command.execute(interaction);
 	} catch (error) {
 		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', flags: Discord.MessageFlags.Ephemeral });
+		await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
 	}
 });
 
@@ -56,7 +60,7 @@ bot.on('ready', () => {
   console.log('I am ready!');
 });
 // Load commands class
-const Command = require('./Command.js');
+import { penis_party, random_swear } from './Command.js';
 
 // create an event listener for messages
 bot.on('messageCreate', message => {
@@ -71,10 +75,10 @@ bot.on('messageCreate', message => {
         break;
     default:
         if(message.content.match(/𓂸/) != null){
-            Command.penis_party(message);
+            penis_party(message);
         }else if(Math.random()>0.97){
             //at random (3% chance) write a new msg
-            Command.random_swear(message);
+            random_swear(message);
         }
         break;
   }

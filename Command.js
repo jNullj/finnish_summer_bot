@@ -1,25 +1,22 @@
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 
-class Command {
-    static getPoints(id){
-        return 0;
-    }
-    static random_swear(message){
-        var swear = ["Mitä helvettiä?!",
-                    "Jumalauta!",
-                    "Perkele!",
-                    "Saatana!",
-                    "Vittu!",
-                    "Voi vittujen kevät!"];
-        var rand = Math.random();
-        var i = Math.floor(rand * Math.floor(swear.length)); //get random index from array
-        message.channel.send(swear[i]);
-    }
+export const getPoints = (id) => {
+    return 0;
+};
 
-    static penis_party(message){
-        message.channel.send("𓂸");
-    }
-}
+export const random_swear = (message) => {
+    const swear = ["Mitä helvettiä?!",
+                   "Jumalauta!",
+                   "Perkele!",
+                   "Saatana!",
+                   "Vittu!",
+                   "Voi vittujen kevät!"];
+    const rand = Math.random();
+    const i = Math.floor(rand * Math.floor(swear.length)); // get random index from array
+    message.channel.send(swear[i]);
+};
 
-module.exports = Command;
+export const penis_party = (message) => {
+    message.channel.send("𓂸");
+};
 
