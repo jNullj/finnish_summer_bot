@@ -1,9 +1,3 @@
-const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
-
-export const getPoints = (id) => {
-    return 0;
-};
-
 export const random_swear = (message) => {
     const swear = ["Mitä helvettiä?!",
                    "Jumalauta!",
