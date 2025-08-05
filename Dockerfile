@@ -1,5 +1,5 @@
 # Stage 1: Builder
-FROM node:24.4.1 AS builder
+FROM node:24.5.0 AS builder
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ RUN npm install --omit=dev
 COPY . .
 
 # Stage 2: Final image
-FROM node:24.4.1-alpine
+FROM node:24.5.0-alpine
 
 WORKDIR /app
 
