@@ -56,7 +56,7 @@ bot.on(Events.InteractionCreate, async interaction => {
 //bot.on('debug', console.log)
 bot.login(TOKEN);
 // critical, makes sure the bot will only start after discord gives it the green flag
-bot.on('ready', () => {
+bot.on('clientReady', () => {
   console.log('I am ready!');
 });
 // Load commands class
