@@ -27,6 +27,9 @@ COPY --from=builder /app /app
 
 # Add a non-root user
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# For entrypoint script
+RUN chown appuser:appgroup /app/botinfo.js
+
 USER appuser
 
 ENTRYPOINT ["./docker.startup.sh"]
