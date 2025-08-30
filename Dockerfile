@@ -3,6 +3,8 @@ FROM node:24.7.0-alpine AS builder
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
 # Install application dependencies
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
@@ -17,6 +19,8 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apk add --no-cache ffmpeg
+
+ENV NODE_ENV=production
 
 # Copy only the built application from the builder stage
 COPY --from=builder /app /app
