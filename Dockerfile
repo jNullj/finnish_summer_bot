@@ -25,4 +25,8 @@ ENV NODE_ENV=production
 # Copy only the built application from the builder stage
 COPY --from=builder /app /app
 
+# Add a non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+USER appuser
+
 ENTRYPOINT ["./docker.startup.sh"]
